@@ -68,6 +68,23 @@ multiples de 10 permettent d'insérer des catégories intermédiaires.
 - Couverture de tests élevée sur `src/` ; tests pertinents sur
   `scripts/` selon la criticité
 
+## Agents parallèles
+
+Utiliser des sous-agents pour :
+
+- **Tâches indépendantes** — analyses, recherches ou transformations
+  sans état partagé qui peuvent s'exécuter en parallèle
+- **Protection du contexte** — déléguer les tâches volumineuses
+  (exploration de codebase, lecture de nombreux fichiers) pour
+  préserver la fenêtre de contexte de l'agent principal
+
+Skill à invoquer : `superpowers:dispatching-parallel-agents`
+
+Exemples typiques :
+- Analyser plusieurs fichiers en parallèle avant une refactorisation
+- Lancer des recherches indépendantes (grep, glob) simultanément
+- Isoler une tâche longue sans polluer le contexte principal
+
 ## Langue
 
 - **Communications** : français

@@ -4,6 +4,8 @@
       "Bash(dir:*)",
       "Bash(ls:*)",
       "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(grep:*)",
       "Bash(echo:*)",
       "Bash(cat:*)",
       "Bash(touch:*)",
