@@ -1,0 +1,66 @@
+[project]
+name = "forge"
+version = "0.1.0"
+description = "Collaboration humain-IA pour le travail quotidien en entreprise"
+requires-python = ">=3.14,<3.15"
+authors = [
+    {name = "Max Imum", email = "24464094+MaxImum2509@users.noreply.github.com"}
+]
+license = {text = "GPL-3.0-or-later"}
+dependencies = [
+    "typer (>=0.12.0,<1.0.0)",
+    "rich>=13.7.0,<14.0.0",
+    "pywin32>=311; sys_platform == 'win32'"
+]
+
+[project.scripts]
+scripts-index = "scripts.scripts_index:main_entry"
+
+
+[dependency-groups]
+dev = [
+    "sphinx>=9.1.0,<10.0.0",
+    "sphinx-rtd-theme>=3.1.0,<4.0.0",
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)",
+    "ruff (>=0.15.4,<0.16.0)",
+    "mypy (>=1.19.1,<2.0.0)",
+    "bandit (>=1.9.4,<2.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    {include = "tooling", from = "src"},
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--cov=src --cov-report=term-missing --cov-fail-under=90 --import-mode=importlib"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "A", "C4"]
+ignore = ["N803", "N806", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "SLF001"]
+
+[tool.mypy]
+python_version = "3.14"
+warn_return_any = false
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101", "B603", "B607"]
+
+
