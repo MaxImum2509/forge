@@ -27,3 +27,6 @@ secrets/
 
 # Claude Code
 .claude/settings.local.json
+
+# Zone de travail locale
+_work/

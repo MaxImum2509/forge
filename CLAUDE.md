@@ -6,6 +6,68 @@ Forge est un écosystème de bibliothèques, d'outils et d'applications, dévelo
 en collaboration avec des LLM (Claude, ...). Le répertoire `.claude/` héberge
 les skills, settings et conventions locales du projet.
 
+## Structure
+
+```
+forge/
+├── CLAUDE.md
+├── README.md
+├── .gitignore
+├── .claude/           # Écosystème IA local
+│   ├── settings.json
+│   └── skills/
+├── _dev/              # Documentation de développement
+│   └── PROGRESS.md
+├── docs/              # Documentation projet
+├── scripts/           # Scripts utilitaires
+├── src/               # Code source des applications et bibliothèques
+├── tests/             # Tests
+└── _work/             # Zone de travail locale (hors git)
+    ├── 00-inbox/      # Éléments entrants non classés
+    ├── 10-projects/   # Projets actifs
+    ├── 20-areas/      # Responsabilités continues
+    ├── 30-resources/  # Références et ressources
+    └── 40-archives/   # Éléments inactifs
+```
+
+`_work/` suit la méthode **IPARA** (PARA + Inbox). Les indices
+multiples de 10 permettent d'insérer des catégories intermédiaires.
+
+## Philosophie de développement
+
+### scripts/ — Tooling utilitaire
+
+- Langage libre (Python, VBA, C#, F#, Java, etc.) selon le besoin
+- Deux vocations :
+    1. Manipuler les fichiers de `_work/`
+    2. Créer des outils et applications destinés à `src/`
+- Développés rapidement, à la demande (pas de sur-ingénierie)
+- **Pattern DRY** : quand un pattern se répète, on extrait vers
+  une application dédiée ou une bibliothèque dans `src/`
+
+### src/ — Code de production
+
+- Applications et bibliothèques pérennes
+- Émergent des patterns identifiés dans `scripts/`
+- Conçus pour sous-tendre les futurs développements
+
+### Principes généraux
+
+**Clean Code** (appliqué strictement) :
+
+- SRP — une seule responsabilité par module/fonction
+- DRY — pas de duplication ; abstraire dès qu'un pattern se répète
+- KISS — solution la plus simple possible
+- YAGNI — ne pas développer ce qui n'est pas nécessaire maintenant
+- SOLID — principes d'architecture orientée objet
+
+**Test-Driven Development** (appliqué strictement) :
+
+- Rouge → Vert → Refactor (cycle TDD sans exception)
+- Écrire le test avant le code de production
+- Couverture de tests élevée sur `src/` ; tests pertinents sur
+  `scripts/` selon la criticité
+
 ## Langue
 
 - **Communications** : français
@@ -28,10 +90,10 @@ les skills, settings et conventions locales du projet.
 - Toujours co-signer : `Co-Authored-By: Claude <noreply@anthropic.com>`
 - Remote HTTPS : `https://github.com/MaxImum2509/forge.git`
 
-### Settings
+## Contraintes (MANDATORY)
 
-- Les settings projet vont UNIQUEMENT dans `.claude/settings.json`
-
-### Skills
-
-- Toutes les skills sont locales au projet : `.claude/skills/`
+- **skills** : UNIQUEMENT locales au projet (`.claude/skills/`)
+- **settings** : UNIQUEMENT locaux au projet (`.claude/settings.json`)
+- **Python** : Poetry uniquement (`pip` interdit), docstrings Sphinx, tests pytest suivant standards `python-development-rules`
+- **VBA** : modules dans `src/vba/`, encodage Windows-1252 suivant standards `excel-development-rules`
+- **Exécution** : `poetry run python scripts/...`
