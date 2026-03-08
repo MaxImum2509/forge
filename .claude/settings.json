@@ -1,8 +1,51 @@
 {
   "permissions": {
     "allow": [
+      "Bash(dir:*)",
+      "Bash(ls:*)",
+      "Bash(sed:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(touch:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(poetry run sphinx-build:*)",
+      "Bash(poetry run ruff:*)",
+      "Bash(poetry run mypy:*)",
+      "Bash(poetry run bandit:*)",
+      "Bash(poetry run pre-commit:*)",
       "WebFetch(domain:man.openbsd.org)"
     ],
     "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/on-script-created.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/on-python-saved.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/on-python-saved.sh"
+          }
+        ]
+      }
+    ]
   }
 }
