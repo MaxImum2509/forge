@@ -39,8 +39,8 @@ multiples de 10 permettent d'insérer des catégories intermédiaires.
 
 - Langage libre (Python, VBA, C#, F#, Java, etc.) selon le besoin
 - Deux vocations :
-    1. Manipuler les fichiers de `_work/`
-    2. Créer des outils et applications destinés à `src/`
+  1. Manipuler les fichiers de `_work/`
+  2. Créer des outils et applications destinés à `src/`
 - Développés rapidement, à la demande (pas de sur-ingénierie)
 - **Pattern DRY** : quand un pattern se répète, on extrait vers
   une application dédiée ou une bibliothèque dans `src/`
@@ -81,6 +81,7 @@ Utiliser des sous-agents pour :
 Skill à invoquer : `superpowers:dispatching-parallel-agents`
 
 Exemples typiques :
+
 - Analyser plusieurs fichiers en parallèle avant une refactorisation
 - Lancer des recherches indépendantes (grep, glob) simultanément
 - Isoler une tâche longue sans polluer le contexte principal
