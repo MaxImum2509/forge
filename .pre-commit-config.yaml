@@ -1,0 +1,29 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: "ruff: lint"
+        language: system
+        entry: poetry run ruff check
+        types: [python]
+        args: ["--fix"]
+
+      - id: ruff-format
+        name: "ruff: format"
+        language: system
+        entry: poetry run ruff format
+        types: [python]
+
+      - id: mypy
+        name: "mypy: type check"
+        language: system
+        entry: poetry run mypy src/
+        pass_filenames: false
+        types: [python]
+
+      - id: bandit
+        name: "bandit: security"
+        language: system
+        entry: poetry run bandit -r src/
+        pass_filenames: false
+        types: [python]

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Scripts index — SQLite database for FRV project scripts.
 
 This module provides a CLI tool to manage a SQLite database that indexes
@@ -17,7 +16,7 @@ Example:
 
 import sqlite3
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -100,7 +99,7 @@ def _resolve_db(db_option: Path | None) -> Path:
 @app.command()
 def init(
     db: Annotated[
-        Optional[Path],
+        Path | None,
         typer.Option("--db", help="Path to the SQLite database file."),
     ] = None,
 ) -> None:
@@ -130,7 +129,7 @@ def init(
 def exec_sql(
     sql: Annotated[str, typer.Argument(help="SQL statement to execute.")],
     db: Annotated[
-        Optional[Path],
+        Path | None,
         typer.Option("--db", help="Path to the SQLite database file."),
     ] = None,
 ) -> None:
